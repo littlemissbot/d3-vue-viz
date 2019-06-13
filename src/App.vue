@@ -1,27 +1,15 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <BarChart :dataset="dataset1"/>
-    <BarChart :dataset="dataset2"/>
+    <router-link to="/"><img alt="Vue logo" src="./assets/logo.png"></router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import BarChart from './components/D3Viz/BarChart.vue'
-
-import * as d3 from 'd3'
-
 export default {
   name: 'app',
-  components: {
-    BarChart
-  },
-  data: function() {
-        return {
-            dataset1: [4, 9, 1, 3, 4],
-            dataset2: [10, 9, 7, 1, 2]
-        }
-    }
+  data: function() {},
+  methods: {}
 }
 </script>
 
@@ -44,5 +32,47 @@ img {
   right: 20px;
   width: 40px;
   height: auto;
+}
+
+form {
+  margin: 1rem;
+}
+form input {
+  min-width: 300px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #EEE;
+  border-radius: 3px;
+  margin: 0 1rem;
+}
+form select {
+  min-width: 150px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #EEE;
+  border-radius: 3px;
+  margin: 0 1rem;
+  appearance: none;
+  -moz-appearance: none;
+  -ms-progress-appearance: none;
+  -webkit-appearance: none;
+}
+form button {
+  padding: 0.5rem 1rem;
+  background: #d3d3d3;
+  border: 1px solid #EEE;
+  border-radius: 3px;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+.chart-container {
+  display: flex;
+  direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.chart-container div {
+  margin: 0.5rem;
+}
+.chart-container svg {
+  margin: 0 1.5rem;
 }
 </style>

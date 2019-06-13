@@ -1,5 +1,5 @@
 <template>
-    <div class="bar-chart"></div>
+    <div class="bar-chart" v-bind:class="componentClass"></div>
 </template>
 
 <script>
@@ -7,10 +7,10 @@ import * as d3 from 'd3'
 
 export default {
     name: "BarChart",
-    props: ["dataset"],
+    props: ["dataset", "type", "componentClass"],
     methods: {
-        horizontalChart : function() {
-            var data = this.dataset;
+        horizontalChart: function(dataset) {
+            var data = dataset;
             var width = 300;
             var height = 300;
             var scaleFactor = 20;
@@ -18,7 +18,7 @@ export default {
 
             var colors = d3.scaleOrdinal(d3.schemeAccent);
 
-            var container = d3.select('.bar-chart');
+            var container = d3.select(`.${this.componentClass}`);
 
             var graph = container.append("svg")
                 .attr("width", width)
@@ -51,18 +51,16 @@ export default {
                 .style("color", "black")
                 .text(function(d) { return d; });
         },
-        verticalChart : function() {
-            var data = [3, 5, 14, 10];
+        verticalChart: function(dataset) {
+            var data = dataset;
             var width = 300;
             var height = 300;
             var scaleFactor = 20;
             var barHeight = 30;
 
-            var colors = d3.scale.category20();
-            var t = d3.transition()
-                .duration(2000);
+            var colors = d3.scaleOrdinal(d3.schemeAccent);
 
-            var container = d3.select('#container');
+            var container = d3.select(`.${this.componentClass}`);
 
             var graph = container.append("svg")
                 .attr("width", barHeight * data.length)
@@ -100,12 +98,6 @@ export default {
                 .text(function(d) { return d; });
         }
     },
-    mounted() {
-        this.horizontalChart()
-    }
+    mounted() {}
 }
 </script>
-
-<style scoped>
-
-</style>
